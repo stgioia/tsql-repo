@@ -38,6 +38,7 @@ IF NOT EXISTS (SELECT * FROM sysobjects WHERE type = 'U' AND name = 'tb_PRTG_Bac
 CREATE TABLE tb_PRTG_BackupWhiteList (
 	DatabaseName	varchar (256)
 	)
+GO
 
 -- Add rows to this table if you want to ignore a particular job failing
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE type = 'U' AND name = 'tb_PRTG_JobWhiteList')
