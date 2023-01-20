@@ -7,6 +7,18 @@ WHERE	d.subscriber_db not in ('virtual')
 AND 	d.anonymous_subid	is null 
 GROUP BY name
 
+SELECT a.name, 
+       s.agent_id, 
+       sum(s.UndelivCmdsInDistDB) as Undelivered,
+       sum(s.DelivCmdsInDistDB) as Delivered
+  FROM [distribution].[dbo].[MSdistribution_status] s
+  WITH (NOLOCK)
+ INNER JOIN [distribution].[dbo].[MSdistribution_agents] a 
+ WITH (NOLOCK)
+ ON a.id = s.agent_id
+ GROUP BY s.agent_id, a.name
+ ORDER BY 4 DESC
+
 
 --List articles
 --https://sqlstudies.com/2022/05/17/getting-a-list-of-the-articles-in-a-publication/
